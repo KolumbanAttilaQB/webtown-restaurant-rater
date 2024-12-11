@@ -151,7 +151,7 @@ class AddReviewScreen extends StatelessWidget {
                                 if (state is LoadedState) {
                                   WidgetsBinding.instance
                                       .addPostFrameCallback((_) {
-                                    Get.back(result: true);
+                                    Get.back();
                                   });
                                 }
 
@@ -175,7 +175,7 @@ class AddReviewScreen extends StatelessWidget {
                                   },
                                   color: Colors.orange,
                                   child: state is LoadingState
-                                      ? const PageLoadingIndicator()
+                                      ? const PageLoadingIndicator(color: Colors.white,)
                                       : Text(
                                           'SEND',
                                           style: GoogleFonts.merriweather(

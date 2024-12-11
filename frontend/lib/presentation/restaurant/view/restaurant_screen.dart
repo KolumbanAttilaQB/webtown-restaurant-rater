@@ -13,7 +13,7 @@ class RestaurantScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<RestaurantCubit>(
       create: (BuildContext context) =>
-          RestaurantCubit(RestaurantRepository())..getRestaurants(),
+          RestaurantCubit(RestaurantRepository())..loadRestaurants(),
       child: BlocBuilder<RestaurantCubit, RestaurantState>(
         builder: (BuildContext context, RestaurantState restaurantState) {
           switch (restaurantState) {
@@ -26,14 +26,25 @@ class RestaurantScreen extends StatelessWidget {
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    const Text('Todo search'),
-                    MySpacer.generalHeight,
+                    TextField(
+                      onChanged: (value) {
+                        if(!context.mounted) return;
+                        context.read<RestaurantCubit>().searchRestaurant(query: value);
+                      },
+                      decoration: const InputDecoration(
+                        hintText: 'Search'
+                      ),
+                    ),
+                    MySpacer.extraHeight,
+                    if(restaurantState.restaurants.isNotEmpty)
                     Column(
                       children: restaurantState.restaurants
                           .map((restaurant) => restaurantCard(
                               context: context, restaurant: restaurant))
                           .toList(),
                     )
+                    else
+                      const Center(child: Text('No restaurants'))
                   ],
                 ),
               );

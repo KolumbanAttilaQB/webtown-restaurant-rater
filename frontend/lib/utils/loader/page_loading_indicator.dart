@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class PageLoadingIndicator extends StatelessWidget {
-  const PageLoadingIndicator({super.key});
+  const PageLoadingIndicator({super.key, this.color = Colors.red});
 
-
+final Color color;
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: SpinKitThreeBounce(
-        color: Colors.red,
+        color: color,
         size: 14,
       ),
     );

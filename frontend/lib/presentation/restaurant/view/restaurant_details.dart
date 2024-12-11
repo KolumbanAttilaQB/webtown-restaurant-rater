@@ -21,9 +21,9 @@ class RestaurantDetailsScreen extends StatelessWidget {
     Restaurant restaurant = Get.arguments as Restaurant;
 
     return BlocProvider<RestaurantDetailsCubit>(
-        create: (BuildContext context) =>
-    RestaurantDetailsCubit(RestaurantRepository())
-      ..getRestaurant(id: restaurant.id),
+      create: (BuildContext context) =>
+          RestaurantDetailsCubit(RestaurantRepository())
+            ..getRestaurant(id: restaurant.id),
       child: BlocBuilder<RestaurantDetailsCubit, RestaurantDetailsState>(
         builder: (BuildContext context,
             RestaurantDetailsState restaurantDetailState) {
@@ -31,8 +31,8 @@ class RestaurantDetailsScreen extends StatelessWidget {
             case LoadingState _:
               return const Center(
                   child: CircularProgressIndicator(
-                    color: Colors.red,
-                  ));
+                color: Colors.red,
+              ));
             case LoadedState():
               RestaurantDetails restaurantDetails =
                   restaurantDetailState.restaurantDetails;
@@ -55,9 +55,20 @@ class RestaurantDetailsScreen extends StatelessWidget {
                 ),
                 floatingActionButton: MaterialButton(
                   onPressed: () async {
-                    final result = await Get.toNamed(AppPages.ADD_REVIEW, arguments: restaurant);
-                    if(result == true) {
-                          context.read<RestaurantDetailsCubit>().getRestaurant(id: restaurant.id);
+                    final result = await Get.toNamed(AppPages.ADD_REVIEW,
+                        arguments: restaurant);
+                    if (result == true) {
+                      if (!context.mounted) return;
+                      context
+                          .read<RestaurantDetailsCubit>()
+                          .getRestaurant(id: restaurant.id);
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text(
+                          'Review added successfully!',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        backgroundColor: Colors.green,
+                      ));
                     }
                   },
                   color: Colors.orangeAccent,
@@ -67,7 +78,8 @@ class RestaurantDetailsScreen extends StatelessWidget {
                   ),
                 ),
                 body: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 15.0, vertical: 10.0),
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
