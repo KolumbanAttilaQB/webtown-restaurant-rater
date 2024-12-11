@@ -27,6 +27,7 @@ class AddReviewScreen extends StatelessWidget {
     Restaurant restaurant = Get.arguments as Restaurant;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
@@ -95,7 +96,6 @@ class AddReviewScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  
                   MySpacer.extraHeight,
                   Form(
                     key: _formKey,
@@ -152,7 +152,9 @@ class AddReviewScreen extends StatelessWidget {
                                 if (state is LoadedState) {
                                   WidgetsBinding.instance
                                       .addPostFrameCallback((_) {
-                                    Get.back();
+                                    if (context.mounted) {
+                                      Get.back(result: true);
+                                    }
                                   });
                                 }
 
@@ -176,7 +178,9 @@ class AddReviewScreen extends StatelessWidget {
                                   },
                                   color: Colors.orange,
                                   child: state is LoadingState
-                                      ? const PageLoadingIndicator(color: Colors.white,)
+                                      ? const PageLoadingIndicator(
+                                          color: Colors.white,
+                                        )
                                       : Text(
                                           'SEND',
                                           style: GoogleFonts.merriweather(

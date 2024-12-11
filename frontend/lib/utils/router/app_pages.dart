@@ -17,10 +17,12 @@ class AppPages {
     GetPage(
       name: Routes.RESTAURANT_DETAILS,
       page: () => const RestaurantDetailsScreen(),
-    ),
-    GetPage(
-      name: Routes.ADD_REVIEW,
-      page: () =>  AddReviewScreen(),
+      children: [
+        GetPage(
+          name: Routes.ADD_REVIEW,
+          page: () =>  AddReviewScreen(),
+        ),
+      ]
     ),
   ];
 }

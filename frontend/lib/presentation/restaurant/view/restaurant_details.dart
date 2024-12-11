@@ -55,7 +55,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
                 ),
                 floatingActionButton: MaterialButton(
                   onPressed: () async {
-                    final result = await Get.toNamed(AppPages.ADD_REVIEW,
+                    final result = await Get.toNamed('${AppPages.RESTAURANT_DETAILS}${AppPages.ADD_REVIEW}',
                         arguments: restaurant);
                     if (result == true) {
                       if (!context.mounted) return;
