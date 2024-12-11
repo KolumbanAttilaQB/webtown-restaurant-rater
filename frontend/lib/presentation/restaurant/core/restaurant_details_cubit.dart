@@ -10,8 +10,8 @@ class RestaurantDetailsCubit extends Cubit<RestaurantDetailsState> {
   Future<void> getRestaurant({required int id}) async {
     emit(LoadingState());
     try {
-      final restaurant = await repository.getRestaurantDetails(id: id);
-      emit(LoadedState(restaurantDetails: restaurant));
+      final restaurantDetails = await repository.getRestaurantDetails(id: id);
+      emit(LoadedState(restaurantDetails: restaurantDetails));
     } catch (e) {
       emit(ErrorState(message: e.toString()));
     }
