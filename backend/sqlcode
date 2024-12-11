@@ -1,0 +1,70 @@
+CREATE TABLE restaurants (
+    id INT PRIMARY KEY,
+    name VARCHAR(255),
+    type VARCHAR(255),
+    location VARCHAR(255)
+);
+
+CREATE TABLE ratings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    restaurant_id INT,
+    rating INT,
+    FOREIGN KEY (restaurant_id) REFERENCES restaurants(id)
+);
+
+CREATE TABLE reviews (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    restaurant_id INT,
+    user_name VARCHAR(255),
+    comment TEXT,
+    FOREIGN KEY (restaurant_id) REFERENCES restaurants(id)
+);
+CREATE TABLE menus (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    restaurant_id INT,
+    menu_name VARCHAR(255),
+    price DECIMAL(10, 2),
+    FOREIGN KEY (restaurant_id) REFERENCES restaurants(id)
+);
+
+INSERT INTO restaurants (id, name, type, location) VALUES
+(1, 'Tengerparti Trattoria', 'Olasz', 'Budapest'),
+(2, 'Zöld Oázis', 'Vegetáriánus', 'Debrecen'),
+(3, 'Hagyományok Háza', 'Magyar', 'Pécs');
+
+ALTER TABLE restaurants
+ADD COLUMN image VARCHAR(255) NULL;
+
+INSERT INTO ratings (restaurant_id, rating) VALUES
+(1, 4),
+(1, 5),
+(2, 4),
+(2, 4),
+(2, 4),
+(2, 5),
+(3, 5),
+(3, 4),
+(3, 5),
+(3, 5);
+
+INSERT INTO reviews (restaurant_id, user_name, comment) VALUES
+(1, 'Anna', 'Nagyszerű tenger gyümölcsei, kellemes környezet.'),
+(1, 'Péter', 'A pizza fantasztikus, de az árak magasak.'),
+(2, 'Lilla', 'Kreatív vegetáriánus ételek, barátságos személyzet.'),
+(2, 'Tamás', 'Nagyszerű választék, de a várakozási idő hosszú volt.'),
+(3, 'Éva', 'Autentikus magyar konyha, csak ajánlani tudom.'),
+(3, 'Gábor', 'Kiváló ízek, de a hely kicsit zsúfolt.');
+
+INSERT INTO menus (restaurant_id, menu_name, price) VALUES
+(1, 'Margherita Pizza', 2500.00),
+(1, 'Seafood Risotto', 3500.00),
+(2, 'Grilled Vegetables', 1800.00),
+(2, 'Vegetarian Lasagna', 2200.00),
+(3, 'Goulash Soup', 1500.00),
+(3, 'Chicken Paprikash', 2800.00);
+
+ALTER DATABASE erdovide_restaurant_rater CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+ALTER TABLE restaurants CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE ratings CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE reviews CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

@@ -1,0 +1,87 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+.env.local
+.DS_Store
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build artifacts
+dist/
+build/
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Misc
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.swp
+
+# Flutter
+# Flutter build files
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.dart_tool/
+ios/Flutter/Flutter.framework/
+ios/Flutter/Flutter.podspec
+
+# macOS
+macos/Flutter/ephemeral/
+
+# Swift Package Manager
+**/.swiftpm
+**/Package.resolved
+
+# Generated files
+*.iml
+*.ipr
+*.iws
+
+# Android
+.android/
+app/build/
+*.keystore
+
+# Xcode
+ios/Pods/
+ios/Runner.xcworkspace/
+ios/Runner.xcodeproj/project.xcworkspace/
+ios/Flutter/App.framework/
+ios/Flutter/Flutter.framework/
+ios/Flutter/Flutter.podspec
+
+# Intellij
+*.iml
+.idea/
+
+# JetBrains IDEs
+*.iml
+*.idea/
+*.ipr
+*.iws
+out/
+
+# Web-related
+pubspec.lock
+.dart_tool/
+
+# Others
+*.log
+*.lock
