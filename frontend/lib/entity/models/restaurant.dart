@@ -19,13 +19,13 @@ class Restaurant {
 
   factory Restaurant.fromJson(Map<String, dynamic> json) {
     return Restaurant(
-      id: json['id'],
+      id: int.parse(json['id'].toString()),
       name: json['name'],
       type: json['type'],
       image: json['image'],
       location: json['location'],
       avgRating: json['avg_rating'],
-      ratingCount: json['rating_count'],
+      ratingCount: int.parse(json['rating_count'].toString()),
     );
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurantapp/presentation/restaurant/view/restaurant_screen.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -10,6 +11,10 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.red,
         title: const Text('RR APP', style: TextStyle(color: Colors.white),),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+        child: const RestaurantScreen(),
       ),
     );
   }

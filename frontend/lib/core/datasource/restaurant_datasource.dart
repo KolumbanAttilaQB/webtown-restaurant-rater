@@ -12,7 +12,7 @@ class RestaurantDataSource extends RestaurantDatasourceInterface{
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
         List<Restaurant> restaurants = [];
-        for (var x in response.data) {
+        for (var x in response.data['data']) {
           Restaurant restaurant = Restaurant.fromJson(x);
           restaurants.add(restaurant);
         }
